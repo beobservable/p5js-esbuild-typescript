@@ -1,4 +1,5 @@
 import p5 from 'p5'
+import NumberGenerator from './numberGenerator'
 import { setup, draw } from './sketch'
 import { keyReleased, keyPressed } from './keyboard'
 import * as Commands from './commands'
@@ -14,7 +15,12 @@ new p5((sketch) => {
     w: 2000, h: 2000,
   }
 
-  sketch.setup = () => setup.apply(sketch, [])
+  sketch.setup = () => {
+    sketch.numberGenerator = new NumberGenerator(sketch.options.seed)
+    sketch.options.seed = sketch.numberGenerator.getSeed()
+
+    setup.apply(sketch, [])
+  }
 
   sketch.draw = () => {
     draw.apply(sketch, [])

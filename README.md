@@ -99,6 +99,7 @@ of the work.
 | *p*       | Export canvas at minimum dimensions (1000 / 1000)   |
 | *P*       | Export canvas at current dimensions                 |
 | *r*       | Reset canvas, running setup and draw                |
+| *s*       | Export configuration of current canvas              |
 | *ESCAPE*  | Cancel movement multiplier                          |
 
 

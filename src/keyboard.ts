@@ -1,5 +1,3 @@
-import p5 from 'p5'
-
 const NUMBER_KEY_CODES = [
   49, 50, 51, 52, 53,
   54, 55, 56, 57, 48,
@@ -74,6 +72,10 @@ export function keyPressed() {
   if (this.key === 'r') {
     this.executeCommand('reset', [], false)
   }
+
+	if (this.key === 's') {
+		this.executeCommand('exportConfiguration', [], false)
+	}
 
   if (this.keyCode === this.ESCAPE) {
     this.executeCommand('clearMultiplier', [])

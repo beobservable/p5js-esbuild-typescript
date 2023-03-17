@@ -23,6 +23,21 @@ export function exportCurrentCanvas() {
   exportFile.apply(this, [{ w, h }])
 }
 
+
+export function exportConfiguration() {
+	const { w, h } = this.options
+	const timestamp = new Date().toISOString().substr(0, 19)
+		.replaceAll('-', '')
+		.replaceAll(':', '')
+		.replace('T', '')
+	const fileName = [timestamp, w, h]
+
+	this.saveJSON({
+		options: this.options,
+	}, `${fileName.join('-')}.json`)
+}
+
+
 function exportFile({ w, h }) {
   const timestamp = new Date().toISOString().substr(0, 19)
   .replaceAll('-', '')
@@ -37,6 +52,10 @@ export function exportMinimumCanvas() {
   exportFile.apply(this, [{
     w: EXPORT_WIDTH_MIN, h: EXPORT_HEIGHT_MIN,
   }])
+}
+
+export function loadConfiguration(data) {
+  this.options = data
 }
 
 export function printSeed() {
