@@ -1,14 +1,22 @@
 {
-  "name": "__ts-template",
+  "name": "p5js-esbuild-typescript",
   "version": "1.0.0",
-  "description": "",
+  "description": "P5js Template",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beobservable/p5js-esbuild-typescript.git"
+  },
   "scripts": {
     "build": "esbuild --bundle src/index.ts --outfile=public/dist/sketch.js --minify --sourcemap",
     "dev": "esbuild --bundle src/index.ts --outfile=public/dist/sketch.js --sourcemap --watch --serve=localhost:8080 --servedir=public"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Observable Art",
+    "email": "x@obserable.art",
+    "url": "https://twitter.com/observable4r5"
+  },
   "license": "ISC",
   "devDependencies": {
     "esbuild": "^0.17.11",
