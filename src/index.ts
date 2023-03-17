@@ -16,23 +16,31 @@ new p5((sketch) => {
   }
 
   sketch.setup = () => {
-    sketch.numberGenerator = new NumberGenerator(sketch.options.seed)
+    const { seed } = sketch.options
+
+    sketch.numberGenerator = new NumberGenerator(seed)
     sketch.options.seed = sketch.numberGenerator.getSeed()
 
     setup.apply(sketch, [])
   }
 
   sketch.draw = () => {
+    const {
+      axisEnabled,
+      borderEnabled,
+      w, h,
+    } = sketch.options
+
     draw.apply(sketch, [])
 
-    if (sketch.options.borderEnabled) {
+    if (borderEnabled) {
       sketch.stroke(0)
-      sketch.strokeWeight(5)
+      sketch.strokeWeight(10)
       sketch.noFill()
       sketch.rect(0, 0, w + margin, h + margin)
     }
 
-    if (sketch.options.axisEnabled) {
+    if (axisEnabled) {
       sketch.push()
 
       sketch.stroke('#000000')
@@ -53,12 +61,13 @@ new p5((sketch) => {
   sketch.keyPressed = () => keyPressed.apply(sketch, [])
 
   sketch.executeCommand = function(command, args, record = true) {
+    const { debuggingEnabled } = sketch.options
     const func = Commands[command]
 
     func.apply(sketch, args)
 
     // TODO: ADD COMMAND LIST AND INDEX
-    if (record && sketch.options.debuggingEnabled) {
+    if (record && debuggingEnabled) {
       console.log("executed command:", func.name, JSON.stringify(args))
     }
 
@@ -67,7 +76,8 @@ new p5((sketch) => {
 
 
   sketch.executeMovement = function(funcName, record = true) {
-    const multiplier = Number(this.options.multiplierArray.join('')) || 1
+    const { multiplierArray } = sketch.options
+    const multiplier = Number(multiplierArray.join('')) || 1
     Commands.clearMultiplier.apply(this)
 
     this.executeCommand(funcName, [multiplier], record)
