@@ -61,6 +61,10 @@ export function keyPressed() {
     this.executeMovement('changeDimensions')
   }
 
+  if (this.key === 'n') {
+    this.executeCommand('resetSeed', [], false)
+  }
+
   if (this.key === 'p') {
     this.executeCommand('exportMinimumCanvas', [], false)
   }
