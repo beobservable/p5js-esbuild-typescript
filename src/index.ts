@@ -22,6 +22,9 @@ new p5((sketch) => {
     sketch.options.seed = sketch.numberGenerator.getSeed()
 
     setup.apply(sketch, [])
+
+    new EventSource('/esbuild')
+      .addEventListener('change', () => location.reload())
   }
 
   sketch.draw = () => {
